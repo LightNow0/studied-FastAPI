@@ -10,6 +10,3 @@ def read_text():
     # 단순 텍스트 문자열을 반환합니다.
     # FastAPI는 이를 PlainTextResponse객체로 반환하여 응답합니다.
     return "This is Plain Text"
-
-
-
