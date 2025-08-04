@@ -1,0 +1,38 @@
+FastAPI는 웹 프레임워크로서 웹 서버 구축에 필요한 다양한 기능을 제공합니다. 이 중 템플릿 엔진 지원이 포함됩니다.
+이 기능은 HTML 파일 내에서 데이터를 동적으로 처리할 수 있도록 해주며 FastAPI는 Jinja2라는 강력한 템플릿 엔진을 사용하여
+HTML 내에서 파이썬 코드를 사용할 수 있게 해줍니다.
+
+# Jinja2 패키지를 포함한 필요한 패키지들 설,치
+- pip install jinja2==3.1.2
+
+보통은 template라는 디렉터리에 HTML 파일을 저장합니다.
+아래의 내용은 프로젝트의 간단한 구조 예시입니다.
+
+- project
+    - main.py
+    -template/
+        - indax.html
+
+main.py는 FastAPI 애플리케이션의 메인 코드를 포함하는 파일이고 template 디렉터리는 HTML 템플릿
+파일들을 저장하는 공간입니다.
+indax.html은 실제 웹페이지의 구조를 정의하는 HTML 파일입니다.
+
+
+# rendering
+template 디렉터리 안에서 indax.html 파일을 찾아 해당 파일에 데이터를 채원 넣고 이를 사용자에게 보여주는 HTML 파일로 렌더합니다.
+이러한 과정을 랜더링이라고 하며 템플릿 엔진이 HTML 파일과 파이썬 변수를 결합하여 최조으적인 웹페이지를 생성합니다.
+
+# FastAPI Setting
+FastAPI에서 Jinja2 템플릿을 사용하기 위해서는 몇가지의 설저을 해줘야합니다.
+Jinja2Template 클래스를 사용해서 설정을 진행해줍니다.
+
+templates = Jinja2Templates(directory="template")
+
+- directory: 이 옵션은 템플릿 파일이 위치한 디렉토리 경로를 지정합니다. 디폴트값은 template입니다.
+- encoding: 템플릿 파일의 인코딩을 지정할 수 있습니다. 디폴트는 'utf-8'입니다.
+- auto_reload: 이 옵션은 개발 중에 템플릿 파일이 변경될 경우 자동으로 리로드 여부를 설정합니다. 디폴트는 None
+                이며, FastAPI 설정에 따라 자동 설정됩니다.
+
+
+# template rendering
+FastAPI에서 HTML 템플릿에 데이터를 삽입하려면 Jinja2Templates 클래스의 TemplateResponse 메서드를 사용합니다.
