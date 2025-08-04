@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>FastAPI Template</title>
-</head>
-<body>
+    <head>
+        <title>FastAPI & Jinja2</title>
+    </head>
+    <body>
 
-    <!--{{ username }}을 통해 동적 데이터를 삽입합니다.-->
-<h1>Hello, {{ username }}</h1>
+            <!--{{ username }}을 통해 동적 데이터를 삽입합니다.-->
+        <h1>Hello, {{ username }}</h1>
 
-</body>
+        <!--제어문-->
+        {% if time_of_day == "morning" %}
+            <h1>Good morning!</h1>
+        {% elif time_of_day == "afternoon" %}
+            <h1>Good Afternoon!</h1>
+        {% else %}
+            <h1>Good Evening!</h1>
+        {% endif %}
+
+        <!--반복문-->
+        <ul>
+            {% for item in items %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+
+    </body>
 </html>
