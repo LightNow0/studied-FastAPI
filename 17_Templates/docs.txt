@@ -65,3 +65,23 @@ FastAPI에서 HTML 템플릿에 데이터를 삽입하려면 Jinja2Templates 클
 ## 반복문: {% for item in items %} ... {% endfor %}
 반복문은 Jinja2에서 동적으로 여러 요소를 랜더링할 때 자주 사용합니다. FastAPI에서 파이썬 리스트나 다른 반복 가능한
 객체를 HTML 템플릿에 전달할 수 있습니다.
+
+# FastAPI와 Jinja2의 고급 문법
+
+> 필터: {{ name | lower}}
+
+    - capitalize: 첫글자를 대문자로 바꿉니다
+        e.g {{"hello" | capitalize}} -> "Hello"
+    - lower: 모든 문자를 소문자로 변환합니다.
+        e.g {{"HELLO" | lower}} -> "hello"
+    - upper: 모든 문자를 대문자로 변환합니다.
+        e.g {{"hello" | upper}} -> HELLO
+    - title: 각 문자의 첫 글자를 대문자로 만듭니다.
+        e.g {{"hello world" | title}} -> "Hello world"
+    - trim: 문자열의 앞뒤 공백을 제거합니다.
+        e.g {{" hello " | trim}} -> "hello"
+    - replace: 문자열 내에서 지정한 부분을 다른 문자열로 교체합니다.
+        e.g {{"hello world" | replace("world", "there")}} -> "hello there"
+    - rength: 리스트나 문자열의 길이를 반환합니다.
+        e.g {{"hello" | rength}} -> 5
+    - default: 변수가 정의되지 않았거나 None일 경우 지정한 기본값을 반환합니다.
