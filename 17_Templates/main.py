@@ -49,3 +49,9 @@ def dynamic_items(request: Request, item_list: str = ""):
 def read_macro(request: Request):
     return templates.TemplateResponse("index.html", {"request": request, "name": "John"})
 
+## 상속
+@app.get("/inherit")
+def template_inherit(request: Request):
+    my_text = "FastAPI와 Jinja2를 이용한 예시입니다."
+    return templates.TemplateResponse("index.html", {"request": request, "text": my_text})
+

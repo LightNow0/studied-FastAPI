@@ -101,3 +101,6 @@ FastAPI에서 HTML 템플릿에 데이터를 삽입하려면 Jinja2Templates 클
 ## 매크로: {% macro my_macro(x, y) %}...{% endmacro %}
 코드를 재사용할 수 있는 블록을 정의합니다.
 
+## 상속: {% extends 'base.html' %}
+상속을 사용하면 기본 HTML 구조를 bsae.html에 작성하고 그 구조를 다른 HTML 템플릿에서 상속 받을 수 있습니다.
+이는 웹사이트에서 공통적으로 사용되는 부분(헤더, 푸터등)을 효율적으로 관리할 수 있게 해줍니다.

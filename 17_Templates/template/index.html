@@ -37,5 +37,14 @@
         {{ greet(name) }}
             {{ greet(name) }}
 
+        <!-- 상속 -->
+         <!-- extends를 통해서 base.html을 상속 받습니다.-->
+        {% extends "base.html" %}
+
+        <!-- block content 부분을 오버라이딩 하여 FastAPI로 부터 전달을 받는 text변수를 렌더링 합니다.-->
+        {% block content %}
+            <p>{{ text }}</p>
+        {% endblock %}
+
     </body>
 </html>
