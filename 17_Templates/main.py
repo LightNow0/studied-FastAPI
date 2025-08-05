@@ -43,3 +43,9 @@ def read_items(request: Request):
 def dynamic_items(request: Request, item_list: str = ""):
     items = item_list.split(",")
     return templates.TemplateResponse("index.html", {"request": request, "items": items})
+
+## macro
+@app.get("/macro")
+def read_macro(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request, "name": "John"})
+

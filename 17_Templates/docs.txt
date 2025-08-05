@@ -85,3 +85,19 @@ FastAPI에서 HTML 템플릿에 데이터를 삽입하려면 Jinja2Templates 클
     - rength: 리스트나 문자열의 길이를 반환합니다.
         e.g {{"hello" | rength}} -> 5
     - default: 변수가 정의되지 않았거나 None일 경우 지정한 기본값을 반환합니다.
+        e.g {{ my_variable | default("N/A)}}
+    - round: 숫자를 지정한 자릿수로 반올림합니다.
+        e.g {{ 42.55 | round(1) }} -> 42.6
+    - float: 숫자나 문자열을 부동소수점 숫자로 변환합니다.
+        e.g {{ "42.55" | float }} -> 42.55
+    - int: 숫자나 문자열을 정수로 반환합니다.
+        e.g {{ "42" | int }} -> 42
+    - json: 파이썬 객체를 JSON 문자열로 반환합니다.
+        e.g {{ my_dict | json }}
+    
+    // 이 외에도 Jinja2는 많은 필터를 제공합니다. 각 필터는 다양한 작업에 유용합니다.
+
+
+## 매크로: {% macro my_macro(x, y) %}...{% endmacro %}
+코드를 재사용할 수 있는 블록을 정의합니다.
+
