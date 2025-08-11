@@ -28,3 +28,17 @@ app.include_router(router)
 # 다양한 사용법
 
 - URL 접두사
+    include_router() 함수를 사용할 때 prefix 매개변수를 통해 모든 라우트에 공통적으로 적용 되는 URL 접두사를 설저으할 수 있습니다.
+    >> app.include_router(router, prefix="/api/v1")
+
+- 태그
+    tags 매개변수를 통해 자동 생성되는지 API문서에 태그를 추가할 수 있습니다.
+    >> app.include_router(router, tags=["items"])
+
+
+# 미들웨어 설정
+FastAPI에서 APIRouter 객체는 미들웨어를 직젖ㅂ 추가할 수 없습니다. 대신 미들웨어는 FastAPI 애플리케이션 인스턴스에 추가하여 해당 인스턴스에
+APIRouter를 포함시킬 수 있습니다.
+
+TrustendHostMiddleware는 FastAPI 및 Starlette에 내장된 미들웨어로 요청이 지정된 허용된 호스트 목록에 있는 호스트로부터만 오도록 제한하는 
+보안 기능을 제공합니다. 이는 특정 도메인이나 서브도메인에서만 API 호출을 허용하고자 할 때 유용합니다.
