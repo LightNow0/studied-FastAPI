@@ -1,0 +1,32 @@
+## 임포트: {% import'macros.html' as macros %}
+
+다른 파일에 정의된 매크로를 현재 파일에서 사용할 수 있도록 가져옵니다.
+
+{% macro input(type, name, value='', size=20) %}
+    <input type="{{  type }}" name="{{ name }}" value="{{ value }}" size="{{ size }}">
+{% endmacro %}
+
+
+- 위치 매개변수(positional parameters): 이러한 매개변수 호출 시 순서대로 값을 전달해야 합니다
+    위 코드에서 type, name이 그 예가 됩니다.
+
+- 기본 매개변수(default parameters): 이 매개변수는 생략이 가능합니다. 생략시 설정된 기본값이 사용됩니다.
+    위 코드에서 value=''와 size=20이 이에 해당됩니다.
+
+# type과 name은 매크로에서 필수적으로 필요한 위치 매개변수입니다. 호출 할때에는 순서대로 지정해줘야합니다.
+
+
+<!-- 'text'와 'username'은 순서대로 type과 name에 전달됩니다 -->
+{{ macro.input('text', 'username') }}
+# value와 size는 기본값을 가지고 있기 때문에 생략이 가능합니다. 만갹 값을 명시적으로 지정하고
+싶다면 가능합니다.
+ 
+<!-- value와 size를 명시적으로 지정 -->
+{{ macro.input('text', 'username', 'default_username', 40) }}
+# 기본 값을 그대로 사용하려면 해당 매개변수를 생략하면 됩니다.
+
+<!-- value와 size는 기본값을 사용 -->
+{{ macro.input('text', 'username') }}
+# 기본값이 있는 매개변수는 선택적으로 사용할 수 있어 매크로의 사용성을 높이고 코드의 유연성을 증가
+    시킵니다
+

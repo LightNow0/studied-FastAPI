@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Import Example</title>
+    </head>
+    <body>
+        {% import "macros.html" as macros %}
+
+        <form action="/sumbit" method="post">
+            {{ macros.input('text', 'username') }}
+            {{ macros.input('password', 'password') }}
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>
