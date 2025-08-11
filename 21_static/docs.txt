@@ -40,3 +40,28 @@ FastAPI를 사용하여 웹 애플리케이션을 개발할 때 index.html과 �
     -templates/
         - index.html
 
+# 실무적인 활용 및 ,이점
+- 구조적인 관리: static과 templates 폴더를 분리함으로써 코드의 관리가 쉬워집니다.
+- 효율적인 캐싱: FastAPI의 staticfile 기능은 브라우저 캐싱 을 자동으로 관리해주므로 더 빠른 페이지 로딩이 가능합니다.
+- 보안: FastAPI는 정적인 파일에 대한 안전한 접근을 보장합니다.
+
+
+## 기존 웹페이지 통합
+FastAPI를 사용하여 웹 애플리케이션을 개발할 때 가끔은 기존에 이미 작성된 웹 페이지를 FastAPI 내에서 동작하도록 만들어야
+할 때가 있습니다. 이럴 경우 FastAPI의 설정을 약간만 조정하면 기존 웹 피이지를 쉬비게 통합할 수 있습니다.
+
+# 프로젝트의 구조
+/
+    - main.py
+    - static/
+        - img/
+            - image.jpg
+    - templates
+        - index.html
+
+- main.py: FastAPI 애플리케이션의 주 실행 파일입니다.
+- static/: 정적 파일을 저장하는 폴더입니다.
+- img/: 이미지 파일을 저장하는 하위 폴더입니다.
+- image.jpg: 웹페이지에서 사용할 이미지 파일입니다
+- templates/: HTML 템플릿을 저장하는 폴더입니다.
+- index.html: 웹 페이지의 주 HTML 파일입니다.
