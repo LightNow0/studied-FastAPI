@@ -1,0 +1,30 @@
+## API Router
+
+FastAPI에서의 APIRouter는 매우 강력한 도구입니다.
+플라스크에서의 블루프린트와 유사하게 작동하며 이를 이해하면 라우트 관리가 더욱
+간편해집니다. 웹 애플리케이션을 개발할 때 코드가 길어지고 복잡해질 수 있습니다.
+이런 경우에 코드를 모듈화하고 잘 구조화하는 것이 중요한데 이때 APIRouter를 사용합니다.
+
+
+APIRouter를 사용하려면 fastapi 패키지에서 import를 해줍니다.
+>> from fastapi import APIRouter
+
+APIRouter 객체 생성
+>> router = APIRouter()
+
+router에 라우트 추가할 수 있습니다.
+>> @router.get("/items/")
+    def read_items():
+        return {"Hello": "World!"}
+
+마지막으로 해당 router를 FastAPI 애플리케이션에 포함시킵니다.
+from fastapi import FastAPI
+
+app = FastAPI()
+
+app.include_router(router)
+
+
+# 다양한 사용법
+
+- URL 접두사
