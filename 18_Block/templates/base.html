@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>여러개의 Block을 가진 Base</title>
+    </head>
+    <body>
+        <header>
+            {% block header %}
+                <h1>기본 헤더입니다.</h1>
+            {% endblock %}
+        </header>
+        <main>
+            {% block content %}
+                <p>기본 바디입니다.</p>
+            {% endblock %}
+        </main>
+        <footer>
+            {% block footer %}
+                <p>기본 푸터입니다.</p>
+            {% endblock %}
+        </footer>
+    </body>
+</html>
