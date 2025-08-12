@@ -25,3 +25,29 @@ app.include_router(
 상속기능은 하위 APIRouter가 상위 APIRouter 또는 FastAPI 애플,리케이션에 포함될 때 상위 라우터의
 설정을 그대로 물려받는 것을 의미합니다.
 예를 들어 상위 라우터에 설정한 의존성이나 태그가 하위 라우터에도 자동으로 적용되는 형태입니다.
+
+
+## APIRouter와 플라스크 블루프린트의 비교
+APIRouter와 플라스크의 블루프린트는 웹 애플리케이션을 모듈화하고 유지 관리하기 쉽게 도와주는 도구입니다.
+그러나 둘 사이에 몇가지 주요 차이점이 있습니다.
+
+- FastAPI에서 APIRouter를 사용하려면 객체를 생성해야합니다.
+>> from fastapi import APIRouter
+    router = APIRouter()
+
+- 플라스크에서는 블루프린트 객체를 생성합.니다.
+>> from flask import Blueprint
+    blueprint = Blueprint('example', __name__)
+
+- FastAPI 애플리케이션에 APIRouter를 등록할 때는 include_router() 메서드를 사용합니다.
+>> app.include_router(router, prefix="/api")
+
+- 블루프린트를 애플리케이션에  등록할 때는 register_blueprint() 메서드를 사용합니다.
+>> app.register_blueprint(blueprint, rul_prefix="/api")
+
+APIRouter는 dependencies와 middlewares를 지원하여 라우터 수준에서 의존성과 미들웨어를
+적용할 수 있습니다. 플라스크는 라우터 수준에서 의존성과 미들웨어를 적용할 수 없습니다.
+이러한 차이점들을 고려하면 FastAPI의 APIRouter는 플라스크의 블루프린트보다 좀 더 다양한 기능을
+제공합니다.
+하지만 플라스크는 그 자체로도 매우 강력하고 유연한 웹 프레임워크이기 때문에 어떤 것을 사용활지는 프로젝트의
+요구사항과 개인의 선호도에 따라 다를 수 있습니다.
