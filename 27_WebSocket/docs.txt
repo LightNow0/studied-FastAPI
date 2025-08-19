@@ -45,3 +45,77 @@ FastAPI에서 비동기 처리는 async와 await라는 두가지 주요 문법�
 
 
 웹소켓 라우트를 구현할 때는 연결관리, 데이터 처리, 예외처리를 적절히 수행하여 안정적인 양방향 통신 채널을 제공해야합니다.
+
+
+# 웹소켓 주요 메서드
+
+- await weblsocket.accept(): 웹소켓 연결 수락
+    - subprotocol: "wamp", "mqtt", "soap" 등 특정한 프로토콜을  수락할 때 사용합니다. 서버와 클라이언트가 통신 방식을 명시하기 위해 사용됩니다.
+>> await weblsocket.accept(subprotocol="wamp")
+
+- await websocket.close(): 웹소켓 연결 종료
+    - code: 종료 코드
+        * 가장 일반적인 코드는 1000(정상종료)입니다.
+
+참고로 main.py의 코드에서 WebSocket 클래스는 연결이 WebSocketDisconnect 예외를 통해 종료되었을 때
+자동으로 close를 호추르합니다.
+이 예외는 클라이언트가 연결을 끊었을 때 발생합니다. 이때는 except WebSocketDisconnect: 블록이 호출되면서
+자동으로 close가 호출된 상태이므로 별도로 await websocket.close(code=1000)을 호출하면 에러가 발생할 수 있습니다.
+그러나 서버 측에서 연결을 명시적으로 종료하고자 할 때 await webksocket.close(code=1000)을 사용할 수 있습니다.
+
+예를 들어 특정 조건에서 서버가 연결을 종료하고 싶을 때 해당 코드를 사용하여 클라이언트에게 연결이 정상적으로 종료되었음을
+알릴 수 있습니다.
+>> await weblsocket.close(code=1000)
+
+- await websocket.receive_text() / await websocket.receive_bytes(): 텍스트 또는 바이트 메시지 수신
+
+- await websocket.send_text(data) / await websocket.send_bytes(data): 텍스트 또는 바이트 메시지 송신
+>> await websocket.send_text("안녕하세요")
+
+- WebSocketDisconnect: 연결 끊김 예외 처리
+>>
+from fastapi import WebSocketDisconnect
+
+try:
+    data = await websocket.receive_text()
+except WebSocketDisconnect:
+    print("연결이 끊겼습니다.)
+
+
+# 매개변수 처리 간략화
+
+웹소켓 경로에서고 쿼리와 경로 매개변수를 사용할 수 있습니다.
+>>
+@app.websocket("/ws/{room_id}")
+async def webksocket_endpoint(websocket: WebSoket, room_kid: str):
+
+
+websocket.client_state와 mwebsocket.application_state는 웹소켓의 현재 상태를 화그인할 때
+유용합니다. 이를 통해 연결 상태에 따른 로직을 구현할 수 있습니다.
+- websocket.client_state:  클라이언트의 웹소켓 연결 상태반환
+>>
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+
+app = FastAPI()
+
+@app.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    if websocket.client_state == WebSocketState.CONNECTED:
+        await websocket.send_text("클라이언트 연결이 되었습니다.")
+    
+- websocket.application_state: 서버의 웹소켓 연결 상태를 반환
+>>
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+
+app = FastAPI()
+
+@app.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    if websocket.application_state == WebSocketState.CONNECTED:
+        await websocket.send_text("애플리케이션과 연결이 되었습니다.")
+
+WebSocketState는 websockets 라이브러리에 정의된 열거형 값으로 CONNECTED, DISCONNECTED, CONNECTING
+등이 있습니다. 이값을 사용해서 특정 상태일 때의 처리를 합니다.
+이러한 상태 정보를 이용하면 연결이 끊긴 경우 재연결을 시도하는 등의 로직을 구현할 수 있습니다. 
