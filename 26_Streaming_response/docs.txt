@@ -26,3 +26,19 @@
 - application/json: JSON 형식의 데이터
 - application/xml: XML 문서
 - application/x-www-form-urlencoded: HTML 폼을 통해 제출된 데이터
+- application/pdf: PDF문서
+- application/msword: Microsoft World 문서
+- application/octet-stream: 이진 데이터를 위한 기본값으로 정해진 타입이 없는 파일을 전송 할 때 사용
+- application/zip: ZIP 압축파일
+- image/png: PNG 이미지
+- image/jpeg: JPEG 이미지
+- image/gif: GIF 이미지
+- audio/mpeg: MP3 or 기타 MPEG 오디오
+- audio/ogg: Ogg Vorbis 오디오
+- video/mp4: MP4 비디오
+- vidoe/mpeg: MPEG 비디오
+- headers: 추가적인 HTTP 헤더를 딕셔너리 형태로 전달할 수 있습니다.
+    ex. 파일 다운로드를 위한 Content-Disposition 헤더를 설정할 수 있습니다.
+- Background: background 인자에 BackgroundTasks 인스턴스를 전달하여 스트리밍 작업과 변행하여
+                실행할 백그라운드 테스크를 지정할 수 있습니다.
+- status-code: 기본적인 200으로 설정되어 있지만 필요한 경우 다른 HTTP 상태코드를 지정할 수 있습니다.
